@@ -29,3 +29,4 @@ class CustomUser(AbstractUser):
 
     class Meta:
         pass
+
