@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from donator.forms import DonatorForm
 # Create your views here.
+from donator.donatorforms import DonatorForm
+
+
 def indexView(request):
     return render(request,'index.html')
 def new_donor(request):
