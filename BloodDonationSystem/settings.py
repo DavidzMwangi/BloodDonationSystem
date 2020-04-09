@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'donator',
     'receiver',
-    'crispy_forms',
+    # 'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -106,6 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
