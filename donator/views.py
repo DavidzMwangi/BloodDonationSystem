@@ -1,4 +1,8 @@
 from django.shortcuts import render
+<<<<<<< HEAD
+from donator.donatorforms import DonatorForm
+=======
+>>>>>>> ef05274d9974aa58cbd382230deb731a308a8d5c
 # Create your views here.
 from donator.donatorforms import DonatorForm
 
