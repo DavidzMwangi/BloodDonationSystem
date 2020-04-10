@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'donator',
     'receiver',
-    # 'crispy_forms',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
