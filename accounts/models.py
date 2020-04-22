@@ -20,12 +20,14 @@ class Location(models.Model):
     location_code = models.CharField(max_length=50)
     sub_county_id = models.ForeignKey(SubCounty, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
 class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     blood_group = models.CharField(max_length=50, null=False, blank=False)
     rhesus_factor = models.CharField(max_length=50, null=False, blank=False)
-    location_id = models.ForeignKey(Location, on_delete=models.CASCADE)
+    location_id = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
 
     class Meta:
         pass

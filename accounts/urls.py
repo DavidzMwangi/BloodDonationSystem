@@ -1,5 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 
+from accounts.views import register
+app_name = 'Accounts'
 urlpatterns = [
-    # path('',)
+    path('register', register, name='register')
 ]
