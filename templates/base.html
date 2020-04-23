@@ -22,6 +22,9 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'admin/css/sb-admin-2.min.css' %}">
 
+    {% block style %}
+
+    {% endblock%}
 </head>
 
 <body id="page-top">
@@ -432,6 +435,10 @@
 <script src="{% static 'admin/js/demo/chart-area-demo.js' %}"></script>
 <script src="{% static 'admin/js/demo/chart-pie-demo.js' %}"></script>
 
+{% block script %}
+
+
+{% endblock%}
 </body>
 
 </html>
