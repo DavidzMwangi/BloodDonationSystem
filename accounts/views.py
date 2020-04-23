@@ -2,7 +2,12 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
 # Create your views here.
+
 from accounts.forms import RegisterForm, LoginForm
+from accounts.forms import RegisterForm
+from donator.models import Donator
+from receiver.models import Receiver
+
 
 
 def register(request):
@@ -15,6 +20,22 @@ def register(request):
             # save user depending on if the user type
             user = authenticate(username=username, password=password)
             login(request, user)
+
+            #determine if user is a donator or a receiver
+            if (form.cleaned_data.get('user_type') == 0):
+                #donator
+                donator= Donator()
+                donator.description=form.cleaned_data.get('description')
+                donator.user=user
+                donator.save()
+            else:
+                #receiver
+                receiver = Receiver()
+                receiver.description = form.cleaned_data.get('description')
+                receiver.user = user
+                receiver.save()
+
+
             return redirect('')
         else:
             print("error")
