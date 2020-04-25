@@ -9,3 +9,4 @@ class DonatorForm(forms.ModelForm):
     class Meta:
         model = Donator
         fields = ('user_id', 'description')
+

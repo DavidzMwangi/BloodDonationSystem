@@ -34,7 +34,7 @@ def register(request):
                 receiver.user = user
                 receiver.save()
 
-            return redirect('')
+            return redirect('Accounts:user_dashboard')
         else:
             print("error")
             print(form.errors)

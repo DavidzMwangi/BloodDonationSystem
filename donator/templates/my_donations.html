@@ -9,38 +9,46 @@
 {% block content %}
 
  <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">All Donators</h1>
+          <h1 class="h3 mb-2 text-gray-800">My Donations</h1>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Donators</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Donations</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Phone Number</th>
+                      <th>Donator Name</th>
+                      <th>Donator Phone Number</th>
                       <th>Blood Group</th>
                       <th>Rhesus Factor</th>
                       <th>County</th>
                       <th>SubCounty</th>
                       <th>Location</th>
+                      <th>Receiver Name</th>
+                      <th>Receiver Phone Number</th>
+                      <th>Location Description</th>
+                      <th>Date</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                  {% for donator in object_list %}
+                  {% for donation in object_list %}
                     <tr>
-                      <td>{{ donator.user.username }}</td>
-                      <td>{{ donator.user.phone_number }}</td>
-                      <td>{{donator.user.blood_group}}</td>
-                      <td>{{ donator.user.rhesus_factor }}</td>
-                      <td>{{ donator.user.location.sub_county.county }}</td>
-                      <td>{{ donator.user.location.sub_county }}</td>
-                      <td>{{ donator.user.location }}</td>
+                      <td>{{ donation.donator.user.username }}</td>
+                      <td>{{ donation.donator.user.phone_number }}</td>
+                      <td>{{donation.donator.user.blood_group}}</td>
+                      <td>{{ donation.donator.user.rhesus_factor }}</td>
+                      <td>{{ donation.receiver.user.location.sub_county.county }}</td>
+                      <td>{{ donation.receiver.user.location.sub_county }}</td>
+                      <td>{{ donation.receiver.user.location }}</td>
+                      <td>{{ donation.receiver.user.username }}</td>
+                      <td>{{ donation.receiver.user.phone_number }}</td>
+                      <td>{{ donation.location_description }}</td>
+                      <td>{{ donation.date }}</td>
                     </tr>
 
                   {% endfor %}

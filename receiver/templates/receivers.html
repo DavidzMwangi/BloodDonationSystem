@@ -25,6 +25,7 @@
                       <th>County</th>
                       <th>SubCounty</th>
                       <th>Location</th>
+                        <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -38,6 +39,7 @@
                       <td>{{ receiver.user.location.sub_county.county }}</td>
                       <td>{{ receiver.user.location.sub_county }}</td>
                       <td>{{ receiver.user.location }}</td>
+                    <td><a href="{% url 'Donator:donate' receiver.id %}" class="btn btn-primary">Donate</a> </td>
                     </tr>
 
                   {% endfor %}
