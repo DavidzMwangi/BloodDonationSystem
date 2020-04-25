@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+
+
+{% endblock %}
+
+{% block content %}
+
+ <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Donate Blood</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Donate</h6>
+            </div>
+            <div class="card-body">
+
+                
+                    <form method="post" action="{% url 'Donator:new_donation' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="receiver_id" value="{{ receiver.id }}">
+                        <div class="row">
+                            <div class="form-group col-sm-12 col-md-4">
+                                <label>Receiver Name</label>
+                                <input disabled value="{{ receiver.user.username }}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-12 col-md-4">
+                                <label>Receiver Blood Type</label>
+                                <input disabled value="{{ receiver.user.blood_group }}" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-12 col-md-4">
+                                <label>Receiver Rhesus Factor</label>
+                                <input disabled value="{{ receiver.user.rhesus_factor }}" class="form-control">
+                            </div>
+                        </div>
+
+                         <div class="row">
+                            <div class="form-group col-sm-12 col-md-4">
+                                <label>Location Description</label>
+                                <input   name="location_description" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-12 col-md-4">
+                                <label>Date</label>
+                                <input   value="{{ current_date }}" class="form-control" name="date">
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-12 col-md-12">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+
+                            </div>
+                        </div>
+                    </form>
+             
+            </div>
+          </div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

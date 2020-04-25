@@ -21,10 +21,3 @@ class RegisterForm(UserCreationForm):
         model = CustomUser
         fields = ('username', 'email', 'password1', 'password2', 'phone_number', 'blood_group', 'rhesus_factor', 'location_id','user_type', 'description')
 
-class LoginForm(UserCreationForm):
-    username = forms.CharField(label='Username', max_length=30)
-    
-    class Meta:
-        model = CustomUser
-        fields = ('username', 'password')
-        
