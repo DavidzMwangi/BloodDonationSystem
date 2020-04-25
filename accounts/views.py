@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 # Create your views here.
 from django.views.generic import TemplateView
 
-from accounts.forms import RegisterForm, LoginForm
+from accounts.forms import RegisterForm
 from donator.models import Donator
 from receiver.models import Receiver
 
@@ -19,20 +20,19 @@ def register(request):
             user = authenticate(username=username, password=password)
             login(request, user)
 
-            #determine if user is a donator or a receiver
+            # determine if user is a donator or a receiver
             if (form.cleaned_data.get('user_type') == 0):
-                #donator
-                donator= Donator()
-                donator.description=form.cleaned_data.get('description')
-                donator.user=user
+                # donator
+                donator = Donator()
+                donator.description = form.cleaned_data.get('description')
+                donator.user = user
                 donator.save()
             else:
-                #receiver
+                # receiver
                 receiver = Receiver()
                 receiver.description = form.cleaned_data.get('description')
                 receiver.user = user
                 receiver.save()
-
 
             return redirect('')
         else:
@@ -45,23 +45,35 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 
+# @login_required
 class DashboardView(TemplateView):
     template_name = "admin_dashboard.html"
 
-def login(request):
+
+# @login_required
+class DonatorReceiverDashboardView(TemplateView):
+    template_name = 'donator_receiver_dashboard.html'
+
+
+def loginRequest(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if (form.is_valid()):
+    
             username = request.POST.get('username')
             password = request.POST.get('password')
 
             user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                if user.is_superuser:
+                    # admin
+                    return redirect('Accounts:dashboard')
+                else:
+                    # //receiver/donator
+                    return redirect('Accounts:user_dashboard')
+            else:
+                return render(request, 'login.html', {'error': 'The user does not exist, please register'})
 
-
-        else:
-             return render(request, 'login.html', {'error': 'The user does not exist, please register'})
-
-
+        
     else:
 
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'error': 'An error occurred'})
