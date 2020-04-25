@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+  <link href="{% static "admin/vendor/datatables/dataTables.bootstrap4.min.css" %}" rel="stylesheet">
+
+
+{% endblock %}
+
+{% block content %}
+
+ <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">All Donators</h1>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Donators</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Phone Number</th>
+                      <th>Blood Group</th>
+                      <th>Rhesus Factor</th>
+                      <th>County</th>
+                      <th>SubCounty</th>
+                      <th>Location</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  {% for donator in object_list %}
+                    <tr>
+                      <td>{{ donator.user.username }}</td>
+                      <td>{{ donator.user.phone_number }}</td>
+                      <td>{{donator.user.blood_group}}</td>
+                      <td>{{ donator.user.rhesus_factor }}</td>
+                      <td>{{ donator.user.location.sub_county.county }}</td>
+                      <td>{{ donator.user.location.sub_county }}</td>
+                      <td>{{ donator.user.location }}</td>
+                    </tr>
+
+                  {% endfor %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+{% endblock %}
+
+{% block script %}
+
+!-- Page level plugins -->
+  <script src="{% static 'admin/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'admin/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'admin/js/demo/datatables-demo.js' %}"></script>
+
+{% endblock %}

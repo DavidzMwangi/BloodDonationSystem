@@ -45,13 +45,13 @@ def register(request):
     return render(request, 'register.html', {'form': form})
 
 
-# @login_required
 class DashboardView(TemplateView):
+    login_required = True
     template_name = "admin_dashboard.html"
 
 
-# @login_required
 class DonatorReceiverDashboardView(TemplateView):
+    login_required =True
     template_name = 'donator_receiver_dashboard.html'
 
 
