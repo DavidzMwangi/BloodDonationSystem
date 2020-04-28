@@ -18,5 +18,5 @@ class Donation(models.Model):
     receiver = models.ForeignKey(Receiver, on_delete=models.CASCADE)
     location_description = models.CharField(max_length=550) #the area where the donation is gonna take place
     is_approved = models.BooleanField(default=False)
-    date = models.DateField(default=timezone.now())
+    date = models.DateField(default=timezone.now)
     
