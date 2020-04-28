@@ -3,6 +3,8 @@ from datetime import datetime
 from django.db import models
 
 # Create your models here.
+from django.utils import timezone
+
 from accounts.models import CustomUser
 from receiver.models import Receiver
 
@@ -16,5 +18,5 @@ class Donation(models.Model):
     receiver = models.ForeignKey(Receiver, on_delete=models.CASCADE)
     location_description = models.CharField(max_length=550) #the area where the donation is gonna take place
     is_approved = models.BooleanField(default=False)
-    date = models.DateField(default=datetime.now())
+    date = models.DateField(default=timezone.now())
     
