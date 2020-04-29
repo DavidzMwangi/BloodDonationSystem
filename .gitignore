@@ -1,4 +1,3 @@
-db.sqlite3
 .idea
 BloodDonationSystem/settings.py
 /.idea
@@ -92,3 +91,4 @@ venv.bak/
 sent_emails/
 staticfiles/
 deploy.sh
+db.sqlite3
