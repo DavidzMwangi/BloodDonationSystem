@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 # Create your views here.
+from django.template import context
 from django.views.generic import TemplateView
 
 from accounts.forms import RegisterForm
@@ -48,32 +48,49 @@ def register(request):
 class DashboardView(TemplateView):
     login_required = True
     template_name = "admin_dashboard.html"
+    donators = Donator.objects.count()
+    receivers = Receiver.objects.count()
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardView, self).get_context_data(**kwargs)
+        context.update({'donators': self.donators, 'receivers': self.receivers})
+        return context
 
 
 class DonatorReceiverDashboardView(TemplateView):
-    login_required =True
+    login_required = True
     template_name = 'donator_receiver_dashboard.html'
+
+    donators = Donator.objects.count()
+    receivers = Receiver.objects.count()
+
+    def get_context_data(self, **kwargs):
+        context = super(DonatorReceiverDashboardView, self).get_context_data(**kwargs)
+        context.update({'donators': self.donators, 'receivers': self.receivers})
+        return context
 
 
 def loginRequest(request):
     if request.method == 'POST':
-    
-            username = request.POST.get('username')
-            password = request.POST.get('password')
 
-            user = authenticate(username=username, password=password)
-            if user:
-                login(request, user)
-                if user.is_superuser:
-                    # admin
-                    return redirect('Accounts:dashboard')
-                else:
-                    # //receiver/donator
-                    return redirect('Accounts:user_dashboard')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user:
+            login(request, user)
+            if user.is_superuser:
+                # admin
+                return redirect('Accounts:dashboard')
             else:
-                return render(request, 'login.html', {'error': 'The user does not exist, please register'})
+                # //receiver/donator
+                return redirect('Accounts:user_dashboard')
+        else:
+            return render(request, 'login.html', {'error': 'The user does not exist, please register'})
 
-        
+
     else:
 
         return render(request, 'login.html', {'error': 'An error occurred'})
