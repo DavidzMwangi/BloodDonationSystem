@@ -1,12 +1,22 @@
 {% extends 'auth.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% block style %}
+<style>
+.bg_register {
+  background: url({% static "start_page/images/bg_4.jpg" %});
+  background-position: center;
+  background-size: cover;
+}
+</style>
+{% endblock %}
 {% block content %}
 
  <div class="card o-hidden border-0 shadow-lg my-5">
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-5 d-none d-lg-block bg_register"></div>
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
