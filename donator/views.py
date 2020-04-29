@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.urls import reverse_lazy
@@ -52,7 +52,7 @@ def newDonation(request):
         donation.date = datetime.now()
         donation.save()
 
-        return reverse_lazy('Donator:my_donations')
+        return redirect('Donator:my_donations')
     else:
         print("Method not allowed")
 
