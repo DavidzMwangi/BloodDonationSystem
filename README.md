@@ -15,7 +15,7 @@ Based on the procedure of installing and running **django** applications as it i
 4. If you have pip installed in your device, skip this step. You can check whether you have **pip** installed in your device by typing **pip** in your **terminal** or **command prompt**. To install **pip**, follow the following guidelines [pip installation](https://pip.pypa.io/en/stable/installing/)
 5. Enable the virtual environment by accessing the location you cloned the application and typing the following command in your terminal or command prompt: `virtualenv venv`. This will create a virtual enviromnent with the name `venv`.
 6. Activate the virtual environment by typing `source venv/bin/activate` in your terminal.
-7. Once activated, run the following command to install all the dependencies needed in the application `pip -r requirements.txt`.
+7. Once activated, run the following command to install all the dependencies needed in the application `pip install -r requirements.txt`.
 8. The application is configured to work with `sqlite` on the fly. However, you can change the database type using the following guidelines: [Django Database](https://docs.djangoproject.com/en/3.0/ref/databases/)
 
 9.Run the command `python3 manage.py migrate` to create the tables in your database.
